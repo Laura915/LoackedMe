@@ -4,6 +4,10 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class App 
 {
@@ -16,7 +20,7 @@ public class App
     	showMainMenu();
     }
     
-    //Collects users input option 
+    //Collects Main menu input option 
     private static void collectMainMenuOption() {
         System.out.println("Please choose your file operation:");
         String option = scanner.nextLine();
@@ -39,10 +43,14 @@ public class App
         
     }
     
+    //Collects file operations input option 
     private static void collectFileOperationsMenuOption() {
         System.out.println("Please choose your file operation:");
         String option = scanner.nextLine();
         switch (option) {
+        case "1": //Adds a new file
+        	addFile();
+        	break;
         case "4": //Returns to main menu
         	showMainMenu();
         	break;
@@ -67,6 +75,31 @@ public class App
         }
         sorted.forEach(System.out::println);
         System.out.println("------------------");
+    }
+    
+    //Add file method
+    private static void addFile() {
+    	System.out.println("Please provide a file path:");
+        String filePath = scanner.nextLine();
+        Path path = Paths.get(filePath);
+
+        if (!Files.exists(path)) {
+            System.out.println("File does not exist");
+            return;
+        }
+
+        String newFilePath = FOLDER + "/" + path.getFileName();
+        int inc = 0;
+        while (Files.exists(Paths.get(newFilePath))) {
+            inc++;
+            newFilePath = FOLDER + "/" + inc + "_" + path.getFileName();
+        }
+        try {
+            Files.copy(path, Paths.get(newFilePath));
+        } catch(IOException e) {
+            System.out.println("Unable to copy file to " + newFilePath);
+        }
+        
     }
     
     //Build file operations screen
