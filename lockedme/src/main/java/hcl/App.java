@@ -51,8 +51,8 @@ public class App
         case "1": //Adds a new file
         	addFile();
         	break;
-        case "4": //Returns to main menu
-        	showMainMenu();
+        case "2": //deletes a file
+        	deleteFile();
         	break;
         default: //Invalid input control
             System.out.println("Invalid input provided, please choose from available options");
@@ -100,6 +100,24 @@ public class App
             System.out.println("Unable to copy file to " + newFilePath);
         }
         
+    }
+    
+    //delete file method 
+    private static void deleteFile() {
+    	System.out.println("Please provide a file path :");
+        String filePath = scanner.nextLine();
+        Path path = Paths.get(filePath);
+
+        if (!Files.exists(path)) {
+            System.out.println("File does not exist");
+            return;
+        }
+        try {
+			Files.delete(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			  System.out.println("Unable to delete file to " + filePath);
+		}
     }
     
     //Build file operations screen
