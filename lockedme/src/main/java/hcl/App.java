@@ -18,23 +18,41 @@ public class App
     
     //Collects users input option 
     private static void collectMainMenuOption() {
-        System.out.println("Please choose 1, 2 or 3:");
+        System.out.println("Please choose your file operation:");
         String option = scanner.nextLine();
         switch (option) {
         case "1": //Show files in ascending order
         	showFilesInAscendingOrder();
         	break;
+        case "2": //Show file operations menu screen
+        	showFileOperationsMenu();
+        	break;	   	
         case "3": //Closes application
             System.out.println("Thanks for using lockedme.com. Closing application.");
             System.exit(0);
             break;
         default: //Invalid input control
-            System.out.println("Invalid input provided, please choose 1, 2 or 3.");
+            System.out.println("Invalid input provided, please choose from available options");
             break;
     }
     showMainMenu();
         
     }
+    
+    private static void collectFileOperationsMenuOption() {
+        System.out.println("Please choose your file operation:");
+        String option = scanner.nextLine();
+        switch (option) {
+        case "4": //Returns to main menu
+        	showMainMenu();
+        	break;
+        default: //Invalid input control
+            System.out.println("Invalid input provided, please choose from available options");
+            break;
+    }
+        showFileOperationsMenu();   
+    }
+    
     //Show files in ascending order    
     private static void showFilesInAscendingOrder() {
         System.out.println("------------------");
@@ -51,6 +69,18 @@ public class App
         System.out.println("------------------");
     }
     
+    //Build file operations screen
+    private static void showFileOperationsMenu() {
+    	System.out.println("---------------");
+        System.out.println("-- File Operations MENU --");
+        System.out.println("1.) Add a File");
+        System.out.println("2.) Delete a File");
+        System.out.println("3.) Search a file");
+        System.out.println("4.) Navigate back to main menu");
+        System.out.println("---------------");
+        collectFileOperationsMenuOption();
+    }
+
     //Build Main options screen
     private static void showMainMenu() {
         System.out.println("-- MAIN MENU --");
