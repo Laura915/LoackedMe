@@ -3,6 +3,8 @@ package hcl;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -53,6 +55,9 @@ public class App
         	break;
         case "2": //deletes a file
         	deleteFile();
+        	break;
+        case "3": //search a file
+        	searchFile();
         	break;
         default: //Invalid input control
             System.out.println("Invalid input provided, please choose from available options");
@@ -118,6 +123,22 @@ public class App
 			// TODO Auto-generated catch block
 			  System.out.println("Unable to delete file to " + filePath);
 		}
+    }
+    
+    //searches file method 
+    private static void searchFile() {
+    	System.out.println("Please provide a file name:");
+        String filePath = scanner.nextLine();
+        Path path = Paths.get(filePath);
+        
+        if(!Files.exists(path)) {
+			System.out.println("File not found!");
+			return;
+		} else {
+			System.out.println("File Found! Path: " + filePath);
+		}
+        
+        
     }
     
     //Build file operations screen
