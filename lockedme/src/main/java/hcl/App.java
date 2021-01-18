@@ -3,8 +3,6 @@ package hcl;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -58,6 +56,9 @@ public class App
         	break;
         case "3": //search a file
         	searchFile();
+        	break;
+        case "4": //returns to main menu
+        	showMainMenu();
         	break;
         default: //Invalid input control
             System.out.println("Invalid input provided, please choose from available options");
